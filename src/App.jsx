@@ -2,10 +2,6 @@ import { useState } from 'react';
 import './stylesheets/App.css'
 import { useEffect } from 'react';
 
-const GameBoard = () => {
-  
-}
-
 const App = () => {
   const [turnCount, setTurnCount] = useState(0);
   const [boardState, setBoardState] = useState(['','','','','','','','','']);
@@ -13,6 +9,12 @@ const App = () => {
   const [activeGame, setActiveGame] = useState(true)
 
   useEffect(() => {
+    if(turnCount >= 9 ){
+      setActiveGame(false)
+      setMessage('DRAW!')
+      return
+    }
+
     const temp = checkWinner()
 
     if (temp.winner) {
